@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class BaseType extends AbstractType
 {
@@ -27,7 +28,8 @@ class BaseType extends AbstractType
                       'placeholder' => 'Titre de la page'
                   )
             ))
-            ->add('description')->add('statut')
+            ->add('description', CKEditorType::class)
+            ->add('statut')
             /*->add('imageFile', FileType::class, array(
                   'label' => "Telecharger l'illustration",
                   'required' => false,

@@ -6,11 +6,17 @@ La base des applications et backoffice avec Symfony 3
 La table User a été créée, juste la mise en page a faire selon le template de la plateforme.
 
 La table base regorge le paramétrage de base avec
+
  VichUploaderBundle:
+
     Pour l'upload des fichiers
+
     https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/index.md
+
     Parameters:
+
         app/config/config.yml:
+
             */
             mappings:
                 base_image:
@@ -33,10 +39,15 @@ La table base regorge le paramétrage de base avec
              /*
 
  LiipImagineBundle:
+
     Pour la redimension des images
+
     https://github.com/liip/LiipImagineBundle
+
     Parameters:
+
         app/config/config.yml:
+        
            */
            base_thumb:
                quality: 75

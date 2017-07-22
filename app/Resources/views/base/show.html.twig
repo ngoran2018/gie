@@ -44,7 +44,7 @@
             <tr>
               <td></td>
               <td>
-                <img src="{{ vich_uploader_asset(base, 'imageFile') }}" alt="{{ base.libelle }}" />
+                <img src="{{ asset('uploads/'~ base.imageName) | imagine_filter('base_grd') }}" alt="{{ base.libelle }}" />
               </td>
             </tr>
         </tbody>

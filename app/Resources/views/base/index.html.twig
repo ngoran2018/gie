@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Libelle</th>
+                <th>Libelle</th>
                 <th>Description</th>
                 <th>Statut</th>
                 <th>Slug</th>
@@ -23,6 +24,10 @@
             <tr>
                 <td><a href="{{ path('base_show', { 'id': base.id }) }}">{{ base.id }}</a></td>
                 <td>{{ base.libelle }}</td>
+                <td>
+                  <img src="{{ asset('uploads/'~ base.imageName) | imagine_filter('base_thumb_w') }}" alt="{{ base.libelle }}" />
+
+                </td>
                 <td>{{ base.description }}</td>
                 <td>{% if base.statut %}Yes{% else %}No{% endif %}</td>
                 <td>{{ base.slug }}</td>

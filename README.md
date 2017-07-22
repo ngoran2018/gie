@@ -17,7 +17,6 @@ La table base regorge le paramétrage de base avec
 
         app/config/config.yml:
 
-            */
             mappings:
                 base_image:
                     uri_prefix:         /uploads
@@ -27,16 +26,15 @@ La table base regorge le paramétrage de base avec
                     inject_on_load:     false
                     delete_on_update:   true
                     delete_on_remove:   true
-            /*
+
 
           AppBundle/Form/BaseType.php:
-           */
+
            use Vich\UploaderBundle\Form\Type\VichImageType;
            ->add('imageFile', VichImageType::class, array(
                  'required' => false,
                  'allow_delete' => true,
              ))
-             /*
 
  LiipImagineBundle:
 
@@ -47,8 +45,7 @@ La table base regorge le paramétrage de base avec
     Parameters:
 
         app/config/config.yml:
-        
-           */
+
            base_thumb:
                quality: 75
                filters:
@@ -60,9 +57,6 @@ La table base regorge le paramétrage de base avec
                filters:
                    relative_resize:
                        widen: 50
-          /*
 
       Twig:
-          */
           <img src="{{ asset('uploads/'~ base.imageName) | imagine_filter('base_thumb_w') }}" alt="{{ base.libelle }}" />
-          /*

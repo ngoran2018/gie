@@ -60,3 +60,6 @@ La table base regorge le paramétrage de base avec
 
       Twig:
           <img src="{{ asset('uploads/'~ base.imageName) | imagine_filter('base_thumb_w') }}" alt="{{ base.libelle }}" />
+
+ CKEditorBundle:
+     initialisation par php bin/console assets:web install

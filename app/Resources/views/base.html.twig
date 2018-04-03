@@ -1,13 +1,329 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GIE{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ asset('ressources/img/logo.png')}}">
+
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700|Roboto:300,400,700" rel="stylesheet">
+        <link href="{{ asset('ressources/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('ressources/css/style.css')}}" rel="stylesheet">
+        <link href="{{ asset('ressources/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('ressources/plugins/switchery/switchery.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('ressources/plugins/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('ressources/css/demo/jasmine.css')}}" rel="stylesheet">
+
+        <!--Page Load Progress Bar-->
+        <link href="{{ asset('ressources/plugins/pace/pace.min.css')}}" rel="stylesheet">
+        <script src="{{ asset('ressources/plugins/pace/pace.min.js')}}"></script>
+    {% endblock %}
+
+</head>
+<body>
+<div id="container" class="effect mainnav-lg navbar-fixed mainnav-fixed">
+    <header id="navbar">
+        <div id="navbar-container" class="boxed">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">
+                    <i class="fa fa-edit brand-icon"></i>
+                    <div class="brand-title">
+                        <span class="brand-text">GIE</span>
+                    </div>
+                </a>
+            </div>
+            <div class="navbar-content clearfix">
+                <ul class="nav navbar-top-links pull-left">
+                    <li class="tgl-menu-btn">
+                        <a class="mainnav-toggle" href="#">
+                            <i class="fa fa-navicon fa-lg"></i>
+                        </a>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-top-links pull-right">
+                    <li class="hidden-xs" id="toggleFullscreen">
+                        <a class="fa fa-expand" data-toggle="fullscreen" href="#" role="button">
+                            <span class="sr-only">Toggle fullscreen</span>
+                        </a>
+                    </li>
+                    <li id="dropdown-user" class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                  <span class="pull-right">
+                    <img class="img-circle img-user media-object" src="{{ asset('ressources/img/avatar.png')}}" alt="Profile Picture">
+                  </span>
+                            <div class="username hidden-xs">{{ 'layout.user'|trans({'%username%': app.user.username}, 'FOSUserBundle')|title }}</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right with-arrow">
+                            <!-- User dropdown menu -->
+                            <ul class="head-list">
+                                <li>
+                                    <a href="{{ path('fos_user_change_password')}}">
+                                        <i class="fa fa-cog fa-fw"></i>
+                                        Changer mot de passe
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout')}}">
+                                        <i class="fa fa-sign-out fa-fw"></i>
+                                        Deconnexion
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="boxed">
+        <div id="content-container">
+            <!--Page Title-->
+
+            {% block body %}{% endblock %}
+        </div>
+        <nav id="mainnav-container">
+            <div id="mainnav">
+                <div id="mainnav-menu-wrap">
+                    <div class="nano">
+                        <div class="nano-content">
+                            <ul id="mainnav-menu" class="list-group">
+                                <!--Category name-->
+                                <li class="list-header">Accueil</li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="{{ path('homepage')}}">
+                                        <i class="fa fa-flask"></i>
+                                        <span class="menu-title">
+                          Tableau de bord
+                        </span>
+                                    </a>
+                                </li>
+                                <!--Category name-->
+                                <li class="list-header">Rubrique</li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-th"></i>
+                                        <span class="menu-title">Gestion</span>
+                                        <i class="arrow"></i>
+                                    </a>
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-caret-right"></i>Ecole
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-briefcase"></i>
+                                        <span class="menu-title">Borderaux</span>
+                                        <i class="arrow"></i>
+                                    </a>
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                    </ul>
+                                </li>
+                                <li class="list-divider"></li>
+                                <!--Category name-->
+                                <li class="list-header">Imprimés</li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-print"></i>
+                                        <span class="menu-title">Imprimés</span>
+                                        <i class="arrow"></i>
+                                    </a>
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-caret-right"></i>filière</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="list-divider"></li>
+                                <!--Category name-->
+                                <li class="list-header">parametrage</li>
+                                <li>
+                                    <a href="#">
+                                      <i class="fa fa-cog"></i>
+                                      <span class="menu-title">Paramètres lmd</span>
+                                      <i class="arrow"></i>
+
+                                    </a>
+                                    <ul>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>domaine
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>filiere
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>mention
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>parcours
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>Type ue
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>ue
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>ecue
+                                          </a>
+                                      </li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a href="#">
+                                      <i class="fa fa-cog"></i>
+                                      <span class="menu-title">Paramètres classic</span>
+                                      <i class="arrow"></i>
+
+                                    </a>
+                                    <ul>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>domaine
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>filiere
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>mention
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>classe
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>Type ue
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>ue
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-caret-right"></i>ecue
+                                          </a>
+                                      </li>
+                                    </ul>
+                                </li>
+
+
+
+                                <li class="list-divider"></li>
+                                <!--Category name-->
+                                <li class="list-header">Administrateur</li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-cog"></i>
+                                        <span class="menu-title">Paramètres</span>
+                                        <i class="arrow"></i>
+                                    </a>
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-caret-right"></i>Ecole
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-caret-right"></i>TYPE formation
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-caret-right"></i>Ecole
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-lock"></i>
+                                        <span class="menu-title">Sécurité</span>
+                                    </a>
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-caret-right"></i>Utilisateurs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-caret-right"></i>Gestionnaires</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!--Widget-->
+                            <!--================================-->
+                            <div class="mainnav-widget">
+                                <!-- Show the button on collapsed navigation -->
+                                <div class="show-small">
+                                    <a href="#" data-toggle="menu-widget" data-target="#demo-wg-server">
+                                        <i class="fa fa-desktop"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('ressources/js/jquery-2.1.1.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/fast-click/fastclick.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/scripts.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/nanoscrollerjs/jquery.nanoscroller.min.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/metismenu/metismenu.min.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/switchery/switchery.min.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/screenfull/screenfull.js')}}"></script>
+{% endblock %}
+
+</body>
+
 </html>

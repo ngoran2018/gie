@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ecole</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ecole.id }}</td>
+            </tr>
+            <tr>
+                <th>Libellé Ecole</th>
+                <td>{{ ecole.libecole }}</td>
+            </tr>
+            <tr>
+                <th>Abréviation Ecole</th>
+                <td>{{ ecole.abrevecole }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_ecole_index') }}">Retour à la liste des Ecoles</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_ecole_edit', { 'id': ecole.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modification Ecole</h1>
+
+  <table>
+    <tr>
+  {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <td>  <input type="submit" value="Modifier" /></td>
+    {{ form_end(edit_form) }}
+
+    {{ form_start(delete_form) }}
+        <td>  <input type="submit" value="Supprimer"></td>
+    {{ form_end(delete_form) }}
+  </tr>
+</table>
+    <ul>
+        <li>
+            <a href="{{ path('admin_ecole_index') }}">Retour à la liste Ecole</a>
+        </li>
+
+      </ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des Ecoles{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent()}}
+<link rel="stylesheet" href="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.css')}}">
+<link rel="stylesheet" href="{{ asset('ressources/plugins/dropzone/dropzone.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+{{ parent()}}
+<script type="text/javascript" src="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.js')}}">
+</script>
+
+
+{% endblock %}

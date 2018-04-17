@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-   Liste des écoles
+   Liste des domaines
 {% endblock %}
 
 {% block body %}
     <div class="pageheader">
-        <h3><i class="fa fa-home"></i>  Gestion des ecoles</h3>
+        <h3><i class="fa fa-home"></i>  Gestion des domaines</h3>
         <div class="breadcrumb-wrapper">
             <span class="label"></span>
             <ol class="breadcrumb">
@@ -57,19 +57,18 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center">#</th>
-                                    <th class="text-center">Abbréviation</th>
-                                    <th class="text-center">Libellé Ecole</th>
+                                    <th class="text-center">Libellé domaine</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for ecole in ecoles %}
+                                {% for domaine in domaines %}
                                     <tr>
                                         <td class="text-right">{{ loop.index }}</td>
-                                        <td>{{ ecole.abrevecole }}</td>
-                                        <td>{{ ecole.libecole }}</td>
+                                        <td>{{ domaine.libelle }}</td>
+                                      
                                         <td class="text-center">
-                                            <a href="{{ path('admin_ecole_edit', {'id': ecole.id })}}" title="Modifier"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ path('admin_domaine_edit', {'id': domaine.id })}}" title="Modifier"><i class="fa fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -82,38 +81,30 @@
             <div class="col-sm-6">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Modification Ecole</h3>
+                        <h3 class="panel-title">Enregistrement domaine</h3>
                     </div>
-                    {{ form_start(edit_form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm' }}) }}
+                    {{ form_start(form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm' }}) }}
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
                                 <div class="form-group">
-                                    <label class="control-label">Libellé Ecole</label>
-                                    {{ form_widget(edit_form.libecole) }}
-                                    {{ form_errors(edit_form.libecole) }}
+                                    <label class="control-label">Libellé domaine</label>
+                                    {{ form_widget(form.libelle) }}
+                                    {{ form_errors(form.libelle) }}
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <div class="form-group">
-                                    <label class="control-label">Abréviation Ecole</label>
-                                    {{ form_widget(edit_form.abrevecole) }}
-                                    {{ form_errors(edit_form.abrevecole) }}
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col-sm-7 col-sm-offset-3 text-right">
                                 <button class="btn btn-default" type="reset">Annuler</button>
-                                <button class="btn btn-primary" type="submit">Modifier</button>
+                                <button class="btn btn-primary" type="submit">Enregistrer</button>
                             </div>
                         </div>
                     </div>
-                    {{ form_end(edit_form)}}
+                    {{ form_end(form)}}
                 </div>
             </div>
         </div>

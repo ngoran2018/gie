@@ -105,13 +105,18 @@ class EcoleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_ecole_edit', array('id' => $ecole->getId()));
+            return $this->redirectToRoute('admin_ecole_index');
         }
+        $em = $this->getDoctrine()->getManager();
+
+        $ecoles = $em->getRepository('AppBundle:Ecole')->findAll();
+
 
         return $this->render('ecole/edit.html.twig', array(
             'ecole' => $ecole,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'ecoles' => $ecoles,
         ));
     }
 

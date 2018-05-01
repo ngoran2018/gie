@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Filieres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libfiliere</th>
+                <th>Abrevfiliere</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for filiere in filieres %}
+            <tr>
+                <td><a href="{{ path('filiere_show', { 'id': filiere.id }) }}">{{ filiere.id }}</a></td>
+                <td>{{ filiere.libfiliere }}</td>
+                <td>{{ filiere.abrevfiliere }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('filiere_show', { 'id': filiere.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('filiere_edit', { 'id': filiere.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('filiere_new') }}">Create a new filiere</a>
+        </li>
+    </ul>
+{% endblock %}

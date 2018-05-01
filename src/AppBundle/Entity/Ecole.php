@@ -35,6 +35,13 @@ class Ecole
      */
     private $abrevecole;
 
+    /**
+     * une école a plusieurs filières
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Filiere", mappedBy="ecole")
+     */
+     private $filieres;
+
 
     /**
      * Get id
@@ -93,5 +100,49 @@ class Ecole
     {
         return $this->abrevecole;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->filieres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add filiere
+     *
+     * @param \AppBundle\Entity\Filiere $filiere
+     *
+     * @return Ecole
+     */
+    public function addFiliere(\AppBundle\Entity\Filiere $filiere)
+    {
+        $this->filieres[] = $filiere;
+
+        return $this;
+    }
+
+    /**
+     * Remove filiere
+     *
+     * @param \AppBundle\Entity\Filiere $filiere
+     */
+    public function removeFiliere(\AppBundle\Entity\Filiere $filiere)
+    {
+        $this->filieres->removeElement($filiere);
+    }
+
+    /**
+     * Get filieres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFilieres()
+    {
+        return $this->filieres;
+    }
+
+    public function __toString(){
+      return $this->getAbrevecole();
+    }
+}

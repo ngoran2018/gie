@@ -31,6 +31,13 @@ class Tformation
       */
       private $abrevformation;
 
+      /**
+       * un type de formation correspond à plusieures filieres
+       *
+       * @ORM\OneToMany(targetEntity="AppBundle\Entity\Filiere", mappedBy="tformation")
+       */
+       private $tformations;
+
     /**
      * Get id
      *
@@ -87,5 +94,8 @@ class Tformation
     public function getAbrevformation()
     {
         return $this->abrevformation;
+    }
+    public function __toString(){
+      return $this->getAbrevformation();
     }
 }

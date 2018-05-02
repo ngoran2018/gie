@@ -52,6 +52,15 @@ class Filiere
       */
       private $domaine;
 
+      /**
+       * une filière appartient à un et un seul type de formation
+       *
+       * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tformation", inversedBy="tformations")
+       * @ORM\JoinColumn(name="tformation_id", referencedColumnName="id")
+       *
+       */
+       private $tformation;
+
     /**
      * Get id
      *
@@ -156,5 +165,29 @@ class Filiere
     public function getDomaine()
     {
         return $this->domaine;
+    }
+
+    /**
+     * Set tformation
+     *
+     * @param \AppBundle\Entity\Tformation $tformation
+     *
+     * @return Filiere
+     */
+    public function setTformation(\AppBundle\Entity\Tformation $tformation = null)
+    {
+        $this->tformation = $tformation;
+
+        return $this;
+    }
+
+    /**
+     * Get tformation
+     *
+     * @return \AppBundle\Entity\Tformation
+     */
+    public function getTformation()
+    {
+        return $this->tformation;
     }
 }

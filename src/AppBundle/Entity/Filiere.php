@@ -44,6 +44,13 @@ class Filiere
      */
      private $ecole;
 
+     /**
+      * Une filiere appartient à une et un seul Domaine
+      *
+      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Domaine", inversedBy="domaines")
+      * @ORM\JoinColumn(name="domaine_id", referencedColumnName="id")
+      */
+      private $domaine;
 
     /**
      * Get id
@@ -125,5 +132,29 @@ class Filiere
     public function getEcole()
     {
         return $this->ecole;
+    }
+
+    /**
+     * Set domaine
+     *
+     * @param \AppBundle\Entity\Domaine $domaine
+     *
+     * @return Filiere
+     */
+    public function setDomaine(\AppBundle\Entity\Domaine $domaine = null)
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    /**
+     * Get domaine
+     *
+     * @return \AppBundle\Entity\Domaine
+     */
+    public function getDomaine()
+    {
+        return $this->domaine;
     }
 }

@@ -13,7 +13,7 @@ class FiliereType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('libfiliere')->add('abrevfiliere')->add('ecole');
+        $builder->add('libfiliere')->add('abrevfiliere')->add('ecole')->add('domaine');
     }/**
      * {@inheritdoc}
      */

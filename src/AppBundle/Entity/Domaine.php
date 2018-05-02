@@ -28,6 +28,12 @@ class Domaine
      */
     private $libelle;
 
+    /**
+     * un Domaine a plusieurs filières
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Filiere", mappedBy="domaine")
+     */
+     private $filieres;
 
     /**
      * Get id
@@ -62,5 +68,49 @@ class Domaine
     {
         return $this->libelle;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->filieres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add filiere
+     *
+     * @param \AppBundle\Entity\Filiere $filiere
+     *
+     * @return Domaine
+     */
+    public function addFiliere(\AppBundle\Entity\Filiere $filiere)
+    {
+        $this->filieres[] = $filiere;
+
+        return $this;
+    }
+
+    /**
+     * Remove filiere
+     *
+     * @param \AppBundle\Entity\Filiere $filiere
+     */
+    public function removeFiliere(\AppBundle\Entity\Filiere $filiere)
+    {
+        $this->filieres->removeElement($filiere);
+    }
+
+    /**
+     * Get filieres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFilieres()
+    {
+        return $this->filieres;
+    }
+
+    public function __toString(){
+      return $this->getLibelle();
+    }
+}

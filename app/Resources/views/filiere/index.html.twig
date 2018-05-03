@@ -1,41 +1,106 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+   Liste des Filière
+{% endblock %}
 
 {% block body %}
-    <h1>Filieres list</h1>
+    <div class="pageheader">
+        <h3><i class="fa fa-home"></i>  Gestion des Filières</h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label"></span>
+            <ol class="breadcrumb">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Configuration</a></li>
+                <li class="active">Filière</li>
+            </ol>
+        </div>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libfiliere</th>
-                <th>Abrevfiliere</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for filiere in filieres %}
-            <tr>
-                <td><a href="{{ path('filiere_show', { 'id': filiere.id }) }}">{{ filiere.id }}</a></td>
-                <td>{{ filiere.libfiliere }}</td>
-                <td>{{ filiere.abrevfiliere }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('filiere_show', { 'id': filiere.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('filiere_edit', { 'id': filiere.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+    <div id="page-content">
+
+        <br>
+        <!-- Message -->
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            {% if flash_message %}
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2">
+                        <div class="alert alert-info media fade in">
+                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                            <div class="media-left">
+                  <span class="icon-wrap icon-wrap-xs icon-circle alert-icon">
+                    <i class="fa fa-check fa-lg"></i>
+                  </span>
+                            </div>
+                            <div class="media-body">
+                                <p></p>
+                                <h4 class="alert-title" style="color: green">
+                                    {{ flash_message }}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
-        </tbody>
-    </table>
+        <!-- \Message -->
+        <br>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+              <a href="{{path('filiere_new')}}" class="btn btn-default">Ajouter une filière</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liste des Filiere</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Abbréviation</th>
+                                    <th class="text-center">Libellé Filière</th>
+                                    <th class="text-center">Type Formation</th>
+                                    <th class="text-center">Ecole</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for filiere in filieres %}
+                                    <tr>
+                                        <td class="text-right">{{ loop.index }}</td>
+                                        <td>{{ filiere.abrevfiliere }}</td>
+                                        <td>{{ filiere.libfiliere }}</td>
+                                        <td>{{ filiere.tformation }}</td>
+                                        <td>{{ filiere.ecole }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ path('filiere_edit', {'id': filiere.id })}}" title="Modifier"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('filiere_new') }}">Create a new filiere</a>
-        </li>
-    </ul>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/sygesca-form-validation.js')}}"></script>
 {% endblock %}

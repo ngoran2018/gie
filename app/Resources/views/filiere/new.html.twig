@@ -1,16 +1,124 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+   Enregistrement des Filières
+{% endblock %}
 
 {% block body %}
-    <h1>Filiere creation</h1>
+    <div class="pageheader">
+        <h3><i class="fa fa-home"></i>  Gestion des Filières</h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label"></span>
+            <ol class="breadcrumb">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Configuration</a></li>
+                <li class="active">Filière</li>
+            </ol>
+        </div>
+    </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div id="page-content">
 
-    <ul>
-        <li>
-            <a href="{{ path('filiere_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Enregistrement Filière</h3>
+                    </div>
+                    {{ form_start(form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm' }}) }}
+                    <div class="panel-body">
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                              <div class="form-group">
+                                  <div class="row">
+                                      <label class="col-sm-3 text-right control-label">Ecole</label>
+                                        <div class="col-sm-8">
+                                          {{ form_widget(form.ecole) }}
+                                          {{ form_errors(form.ecole) }}
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                              <div class="form-group">
+                                  <div class="row">
+                                      <label class="col-sm-3 text-right control-label">Domaine</label>
+                                        <div class="col-sm-8">
+                                          {{ form_widget(form.domaine) }}
+                                          {{ form_errors(form.domaine) }}
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                              <div class="form-group">
+                                  <div class="row">
+                                      <label class="col-sm-3 text-right control-label">Type Formation</label>
+                                        <div class="col-sm-8">
+                                          {{ form_widget(form.tformation) }}
+                                          {{ form_errors(form.tformation) }}
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">Libellé Filière</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(form.libfiliere) }}
+                                            {{ form_errors(form.libfiliere) }}
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">Abréviation Filière</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(form.abrevfiliere) }}
+                                            {{ form_errors(form.abrevfiliere) }}
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-7 col-sm-offset-3 text-right">
+                                <button class="btn btn-default" type="reset">Annuler</button>
+                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form)}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/sygesca-form-validation.js')}}"></script>
 {% endblock %}

@@ -48,7 +48,7 @@ class FiliereController extends Controller
             $em->persist($filiere);
             $em->flush();
 
-            return $this->redirectToRoute('filiere_show', array('id' => $filiere->getId()));
+            return $this->redirectToRoute('filiere_index');
         }
 
         return $this->render('filiere/new.html.twig', array(

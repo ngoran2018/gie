@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class FiliereType extends AbstractType
 {
@@ -13,7 +14,40 @@ class FiliereType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('libfiliere')->add('abrevfiliere')->add('ecole')->add('domaine')->add('tformation');
+        $builder
+            ->add('libfiliere', TextType::class,array(
+              'attr'=> array(
+                'class'=> 'form-control',
+                'placeholder'=>'Libellé Filière',
+                'autocomplete'=>'off'
+
+              )
+            ))
+            ->add('abrevfiliere', TextType::class,array(
+              'attr'=> array(
+                'class'=> 'form-control',
+                'placeholder'=>'Abréviation Filière',
+                'autocomplete'=>'off'
+
+              )
+            ))
+            ->add('ecole', null, array(
+              'attr'=> array(
+                'class'=> 'form-control',
+                'placeholder'=>'Sélection une Ecole'
+              )
+            ))
+            ->add('domaine', null, array(
+              'attr'=> array(
+                'class'=> 'form-control'
+              )
+            ))
+            ->add('tformation', null, array(
+              'attr'=> array(
+                'class'=> 'form-control'
+              )
+            ))
+            ;
     }/**
      * {@inheritdoc}
      */

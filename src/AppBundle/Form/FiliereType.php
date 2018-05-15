@@ -34,17 +34,19 @@ class FiliereType extends AbstractType
             ->add('ecole', null, array(
               'attr'=> array(
                 'class'=> 'form-control',
-                'placeholder'=>'Sélection une Ecole'
+                'placeholder'=>'Sélectionner une Ecole'
               )
             ))
             ->add('domaine', null, array(
               'attr'=> array(
-                'class'=> 'form-control'
+                'class'=> 'form-control',
+                'placeholder'=>'Sélectionner un domaine'
               )
             ))
             ->add('tformation', null, array(
               'attr'=> array(
-                'class'=> 'form-control'
+                'class'=> 'form-control',
+                'placeholder'=>'Sélectionner un type de formation'
               )
             ))
             ;

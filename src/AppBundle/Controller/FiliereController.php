@@ -88,7 +88,7 @@ class FiliereController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('filiere_edit', array('id' => $filiere->getId()));
+            return $this->redirectToRoute('filiere_index');
         }
 
         return $this->render('filiere/edit.html.twig', array(

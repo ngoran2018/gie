@@ -1,21 +1,130 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}
+   Modification et suppression
+{% endblock %}
 {% block body %}
-    <h1>Filiere edit</h1>
+<div class="pageheader">
+    <h3><i class="fa fa-home"></i>  Gestion des Filières</h3>
+    <div class="breadcrumb-wrapper">
+        <span class="label"></span>
+        <ol class="breadcrumb">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Configuration</a></li>
+            <li class="active">Filière</li>
+        </ol>
+    </div>
+</div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+<div id="page-content">
 
-    <ul>
-        <li>
-            <a href="{{ path('filiere_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+  <br>
+  <div class="row">
+      <div class="col-sm-12 text-right">
+        <a href="{{path('filiere_index')}}" class="btn btn-default">Liste des filières</a>
+      </div>
+  </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Modification et Suppression de Filière</h3>
+                </div>
+                {{ form_start(edit_form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm', 'onsubmit': 'return confirm("Voulez - vous vraiment modifier cette filière ?")' }}) }}
+                <div class="panel-body">
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-offset-1">
+                          <div class="form-group">
+                              <div class="row">
+                                  <label class="col-sm-3 text-right control-label">Ecole</label>
+                                    <div class="col-sm-8">
+                                      {{ form_widget(edit_form.ecole) }}
+                                      {{ form_errors(edit_form.ecole) }}
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-offset-1">
+                          <div class="form-group">
+                              <div class="row">
+                                  <label class="col-sm-3 text-right control-label">Domaine</label>
+                                    <div class="col-sm-8">
+                                      {{ form_widget(edit_form.domaine) }}
+                                      {{ form_errors(edit_form.domaine) }}
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-offset-1">
+                          <div class="form-group">
+                              <div class="row">
+                                  <label class="col-sm-3 text-right control-label">Type Formation</label>
+                                    <div class="col-sm-8">
+                                      {{ form_widget(edit_form.tformation) }}
+                                      {{ form_errors(edit_form.tformation) }}
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-3 text-right control-label">Libellé Filière</label>
+                                      <div class="col-sm-8">
+                                        {{ form_widget(edit_form.libfiliere) }}
+                                        {{ form_errors(edit_form.libfiliere) }}
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-3 text-right control-label">Abréviation Filière</label>
+                                      <div class="col-sm-8">
+                                        {{ form_widget(edit_form.abrevfiliere) }}
+                                        {{ form_errors(edit_form.abrevfiliere) }}
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-7 col-sm-offset-3 text-right">
+                            <button class="btn btn-default" type="reset">Annuler</button>
+                            <button class="btn btn-primary" type="submit">Modifier</button>
+                        </div>
+
+                    </div>
+                    <br>
+                    {{ form_end(edit_form)}}
+                    <div class="row">
+                      <div class="col-sm-7 col-sm-offset-4 text-right">
+                          {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Voulez-vous vraiment supprimer cette filière ?")'}})}}
+                          <button class="btn btn-danger" type="submit">Supprimer</button>
+                          {{ form_end(delete_form)}}
+                      </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 {% endblock %}

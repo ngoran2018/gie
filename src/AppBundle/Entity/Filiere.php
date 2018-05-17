@@ -61,6 +61,13 @@ class Filiere
        */
        private $tformation;
 
+       /**
+        * une filiere a plusieurs mentions
+        *
+        * @ORM\OneToMany(targetEntity="AppBundle\Entity\Mention", mappedBy="filiere")
+        */
+        private $mentions;
+
     /**
      * Get id
      *
@@ -189,5 +196,50 @@ class Filiere
     public function getTformation()
     {
         return $this->tformation;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mentions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add mention
+     *
+     * @param \AppBundle\Entity\Mention $mention
+     *
+     * @return Filiere
+     */
+    public function addMention(\AppBundle\Entity\Mention $mention)
+    {
+        $this->mentions[] = $mention;
+
+        return $this;
+    }
+
+    /**
+     * Remove mention
+     *
+     * @param \AppBundle\Entity\Mention $mention
+     */
+    public function removeMention(\AppBundle\Entity\Mention $mention)
+    {
+        $this->mentions->removeElement($mention);
+    }
+
+    /**
+     * Get mentions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMentions()
+    {
+        return $this->mentions;
+    }
+
+    public function __toString(){
+      return $this->ecole .'-'. $this->libfiliere;
     }
 }

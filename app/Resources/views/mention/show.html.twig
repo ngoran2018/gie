@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mention</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mention.id }}</td>
+            </tr>
+            <tr>
+                <th>Libmention</th>
+                <td>{{ mention.libmention }}</td>
+            </tr>
+            <tr>
+                <th>Abrevmention</th>
+                <td>{{ mention.abrevmention }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ mention.niveau }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mention_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mention_edit', { 'id': mention.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

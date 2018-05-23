@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class EcoleRepository extends \Doctrine\ORM\EntityRepository
 {
+
+  /**
+   *Liste des Ecoles
+   */
+   public function findListEcole(){
+     $q = $this->createQueryBuilder('e')
+                ->orderBy('e.abrevecole' ,'ASC')
+                ->getQuery()
+                ->getResult()
+     ;
+     return $q;
+
+   }
 }

@@ -34,13 +34,13 @@ class MentionController extends Controller
     /**
      * Creates a new mention entity.
      *
-     * @Route("/new", name="mention_new")
+     * @Route("/new/{ecole}", name="mention_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $ecole)
     {
         $mention = new Mention();
-        $form = $this->createForm('AppBundle\Form\MentionType', $mention);
+        $form = $this->createForm('AppBundle\Form\MentionType', $mention, array('ecole' => $ecole ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

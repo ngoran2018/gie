@@ -50,6 +50,13 @@ class Mention
      */
      private $filiere;
 
+     /**
+      * une Mention a plusieurs Parcours
+      *
+      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Parcours", mappedBy="mention")
+      */
+      private $parcours;
+
 
     /**
      * Get id
@@ -156,4 +163,50 @@ class Mention
     {
         return $this->filiere;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->parcours = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add parcour
+     *
+     * @param \AppBundle\Entity\Parcours $parcour
+     *
+     * @return Mention
+     */
+    public function addParcour(\AppBundle\Entity\Parcours $parcour)
+    {
+        $this->parcours[] = $parcour;
+
+        return $this;
+    }
+
+    /**
+     * Remove parcour
+     *
+     * @param \AppBundle\Entity\Parcours $parcour
+     */
+    public function removeParcour(\AppBundle\Entity\Parcours $parcour)
+    {
+        $this->parcours->removeElement($parcour);
+    }
+
+    /**
+     * Get parcours
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParcours()
+    {
+        return $this->parcours;
+    }
+
+
+    public function __toString(){
+        return $this->libmention;
+      }
 }

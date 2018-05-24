@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 class MentionType extends AbstractType
@@ -38,12 +39,17 @@ class MentionType extends AbstractType
 
               )
             ))
-            ->add('niveau', TextType::class,array(
+            ->add('niveau', ChoiceType::class,array(
               'attr'=> array(
                 'class'=> 'form-control',
-                'placeholder'=>'Niveau',
-                'autocomplete'=>'off'
-
+              ),
+              'choices'=> array(
+                'Sélectionnez un niveau'=> null,
+                'Licence 1'=> 'Licence 1',
+                'Licence 2'=> 'Licence 2',
+                'Licence 3'=> 'Licence 3',
+                'Master 1'=> 'Master 1',
+                'Master 2'=> 'Master 2',
               )
             ))
             ->add('filiere', EntityType::class,array(

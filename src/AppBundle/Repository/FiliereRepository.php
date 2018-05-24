@@ -17,9 +17,14 @@ class FiliereRepository extends \Doctrine\ORM\EntityRepository
    {
      return $q = $this->createQueryBuilder('f')
                       ->innerJoin('f.ecole', 'e')
+                      ->innerJoin('f.tformation', 't')
                       ->where('e.id = :ecole')
+                      ->andWhere('t.abrevformation = :formation')
                       ->orderBy('f.libfiliere', 'ASC')
-                      ->setParameter('ecole', $ecole)
+                      ->setParameters(array(
+                        'ecole'=> $ecole,
+                        'formation'=> 'LMD'
+                      ))
      ;
    }
 }

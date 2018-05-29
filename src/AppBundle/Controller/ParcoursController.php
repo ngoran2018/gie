@@ -39,20 +39,20 @@ class ParcoursController extends Controller
      */
     public function newAction(Request $request)
     {
-        $parcour = new Parcour();
-        $form = $this->createForm('AppBundle\Form\ParcoursType', $parcour);
+        $parcours = new Parcours();
+        $form = $this->createForm('AppBundle\Form\ParcoursType', $parcours);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($parcour);
+            $em->persist($parcours);
             $em->flush();
 
-            return $this->redirectToRoute('parcours_show', array('id' => $parcour->getId()));
+            return $this->redirectToRoute('parcours_show', array('id' => $parcours->getId()));
         }
 
         return $this->render('parcours/new.html.twig', array(
-            'parcour' => $parcour,
+            'parcour' => $parcours,
             'form' => $form->createView(),
         ));
     }
@@ -63,12 +63,12 @@ class ParcoursController extends Controller
      * @Route("/{id}", name="parcours_show")
      * @Method("GET")
      */
-    public function showAction(Parcours $parcour)
+    public function showAction(Parcours $parcours)
     {
-        $deleteForm = $this->createDeleteForm($parcour);
+        $deleteForm = $this->createDeleteForm($parcours);
 
         return $this->render('parcours/show.html.twig', array(
-            'parcour' => $parcour,
+            'parcour' => $parcours,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -79,20 +79,20 @@ class ParcoursController extends Controller
      * @Route("/{id}/edit", name="parcours_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Parcours $parcour)
+    public function editAction(Request $request, Parcours $parcours)
     {
-        $deleteForm = $this->createDeleteForm($parcour);
-        $editForm = $this->createForm('AppBundle\Form\ParcoursType', $parcour);
+        $deleteForm = $this->createDeleteForm($parcours);
+        $editForm = $this->createForm('AppBundle\Form\ParcoursType', $parcours);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('parcours_edit', array('id' => $parcour->getId()));
+            return $this->redirectToRoute('parcours_edit', array('id' => $parcours->getId()));
         }
 
         return $this->render('parcours/edit.html.twig', array(
-            'parcour' => $parcour,
+            'parcours' => $parcours,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -104,14 +104,14 @@ class ParcoursController extends Controller
      * @Route("/{id}", name="parcours_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Parcours $parcour)
+    public function deleteAction(Request $request, Parcours $parcours)
     {
-        $form = $this->createDeleteForm($parcour);
+        $form = $this->createDeleteForm($parcours);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($parcour);
+            $em->remove($parcours);
             $em->flush();
         }
 
@@ -125,10 +125,10 @@ class ParcoursController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Parcours $parcour)
+    private function createDeleteForm(Parcours $parcours)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('parcours_delete', array('id' => $parcour->getId())))
+            ->setAction($this->generateUrl('parcours_delete', array('id' => $parcours->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

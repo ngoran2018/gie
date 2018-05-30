@@ -1,21 +1,105 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}
+   Modification et suppression
+{% endblock %}
 {% block body %}
-    <h1>Parcour edit</h1>
+<div class="pageheader">
+    <h3><i class="fa fa-home"></i>  Gestion des Parcours</h3>
+    <div class="breadcrumb-wrapper">
+        <span class="label"></span>
+        <ol class="breadcrumb">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Parametrage LMD</a></li>
+            <li class="active">Parcours</li>
+        </ol>
+    </div>
+</div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+<div id="page-content">
 
-    <ul>
-        <li>
-            <a href="{{ path('parcours_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+  <br>
+  <div class="row">
+      <div class="col-sm-12 text-right">
+        <a href="{{path('parcours_index')}}" class="btn btn-default">Liste des Parcours</a>
+      </div>
+  </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Modification et Suppression de Parcours</h3>
+                </div>
+                {{ form_start(edit_form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm', 'onsubmit': 'return confirm("Voulez - vous vraiment modifier ce Parcours ?")' }}) }}
+                <div class="panel-body">
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-offset-1">
+                          <div class="form-group">
+                              <div class="row">
+                                  <label class="col-sm-3 text-right control-label">Mention</label>
+                                    <div class="col-sm-8">
+                                      {{ form_widget(edit_form.mention) }}
+                                      {{ form_errors(edit_form.mention) }}
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-3 text-right control-label">Libellé Parcours</label>
+                                      <div class="col-sm-8">
+                                        {{ form_widget(edit_form.libparcours) }}
+                                        {{ form_errors(edit_form.libparcours) }}
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-3 text-right control-label">Abréviation Parcours</label>
+                                      <div class="col-sm-8">
+                                        {{ form_widget(edit_form.abrevparcours) }}
+                                        {{ form_errors(edit_form.abrevparcours) }}
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-7 col-sm-offset-3 text-right">
+                            <button class="btn btn-default" type="reset">Annuler</button>
+                            <button class="btn btn-primary" type="submit">Modifier</button>
+                        </div>
+
+                    </div>
+                    <br>
+                    {{ form_end(edit_form)}}
+                    <div class="row">
+                      <div class="col-sm-7 col-sm-offset-4 text-right">
+                          {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Voulez-vous vraiment supprimer cette mention ?")'}})}}
+                          <button class="btn btn-danger" type="submit">Supprimer</button>
+                          {{ form_end(delete_form)}}
+                      </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 {% endblock %}

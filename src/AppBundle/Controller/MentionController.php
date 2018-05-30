@@ -81,14 +81,16 @@ class MentionController extends Controller
      */
     public function editAction(Request $request, Mention $mention)
     {
+        //$em = $this->getDoctrine()->getManager(); dump($mention->getFiliere()->getEcole()); die();
+        $ecole = $mention->getFiliere()->getEcole()->getId();
         $deleteForm = $this->createDeleteForm($mention);
-        $editForm = $this->createForm('AppBundle\Form\MentionType', $mention);
+        $editForm = $this->createForm('AppBundle\Form\MentionType', $mention, array('ecole' => $ecole ));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('mention_edit', array('id' => $mention->getId()));
+            return $this->redirectToRoute('mention_index');
         }
 
         return $this->render('mention/edit.html.twig', array(

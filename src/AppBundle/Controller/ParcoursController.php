@@ -45,10 +45,11 @@ class ParcoursController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $parcours->setAbrevparcours(strtoupper($parcours->getAbrevparcours()));
             $em->persist($parcours);
             $em->flush();
 
-            return $this->redirectToRoute('parcours_show', array('id' => $parcours->getId()));
+            return $this->redirectToRoute('parcours_index', array('id' => $parcours->getId()));
         }
 
         return $this->render('parcours/new.html.twig', array(
@@ -88,7 +89,7 @@ class ParcoursController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('parcours_edit', array('id' => $parcours->getId()));
+            return $this->redirectToRoute('parcours_index');
         }
 
         return $this->render('parcours/edit.html.twig', array(

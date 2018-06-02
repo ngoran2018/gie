@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Annee</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ annee.id }}</td>
+            </tr>
+            <tr>
+                <th>Debutannee</th>
+                <td>{{ annee.debutannee }}</td>
+            </tr>
+            <tr>
+                <th>Finannee</th>
+                <td>{{ annee.finannee }}</td>
+            </tr>
+            <tr>
+                <th>Libannee</th>
+                <td>{{ annee.libannee }}</td>
+            </tr>
+            <tr>
+                <th>Libsessionexam</th>
+                <td>{{ annee.libsessionexam }}</td>
+            </tr>
+            <tr>
+                <th>Datecomexam</th>
+                <td>{{ annee.datecomexam }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('annee_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('annee_edit', { 'id': annee.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

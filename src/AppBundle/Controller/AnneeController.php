@@ -105,14 +105,25 @@ class AnneeController extends Controller
         $editForm = $this->createForm('AppBundle\Form\AnneeType', $annee);
         $editForm->handleRequest($request);
 
+        $debut = $annee->getDebutannee();
+        $fin = $debut + 1;
+        $annee->setFinannee($fin);
+      //$annee->setLibannee($debut.' / '.$fin); dump($annee); die();
+        $annee->setLibannee($debut.' / '.$fin);
+
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('annee_edit', array('id' => $annee->getId()));
+            return $this->redirectToRoute('annee_index');
         }
+
+          $em = $this->getDoctrine()->getManager();
+          $annees = $em->getRepository('AppBundle:Annee')->findAll();
 
         return $this->render('annee/edit.html.twig', array(
             'annee' => $annee,
+            'annees' => $annees,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

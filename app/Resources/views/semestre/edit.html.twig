@@ -4,13 +4,13 @@
 {% endblock %}
 {% block body %}
 <div class="pageheader">
-    <h3><i class="fa fa-home"></i>  Gestion des années académiques</h3>
+    <h3><i class="fa fa-home"></i>  Gestion des Semestres</h3>
     <div class="breadcrumb-wrapper">
         <span class="label"></span>
         <ol class="breadcrumb">
             <li><a href="#">Accueil</a></li>
             <li><a href="#">Configuration</a></li>
-            <li class="active">Année</li>
+            <li class="active">Semestre</li>
         </ol>
     </div>
 </div>
@@ -20,7 +20,7 @@
   <br>
   <div class="row">
       <div class="col-sm-12 text-right">
-        <a href="{{path('annee_index')}}" class="btn btn-default">Liste des années académiques</a>
+        <a href="{{path('semestre_index')}}" class="btn btn-default">Liste des semestres</a>
       </div>
   </div>
 
@@ -28,7 +28,7 @@
       <div class="col-sm-6">
           <div class="panel">
               <div class="panel-heading">
-                  <h3 class="panel-title">Liste des années académiques</h3>
+                  <h3 class="panel-title">Liste des semestres</h3>
               </div>
               <div class="panel-body">
                   <div class="table-responsive">
@@ -36,21 +36,17 @@
                           <thead>
                           <tr>
                               <th class="text-center">#</th>
-                              <th class="text-center">Année académique</th>
-                              <th class="text-center">Session examen</th>
-                              <th class="text-center">Date com. examen</th>
+                              <th class="text-center">Libellé semestre</th>
                               <th class="text-center">Actions</th>
                           </tr>
                           </thead>
                           <tbody>
-                          {% for annee in annees %}
+                          {% for semestre in semestres %}
                               <tr>
                                   <td class="text-right">{{ loop.index }}</td>
-                                  <td>{{ annee.libannee }}</td>
-                                  <td>{{ annee.libsessionexam }}</td>
-                                  <td>{{ annee.datecomexam }}</td>
+                                  <td>{{ semestre.libsemestre }}</td>
                                   <td class="text-center">
-                                      <a href="{{ path('annee_edit', {'id': annee.id })}}" title="Modifier"><i class="fa fa-edit"></i></a>
+                                      <a href="{{ path('semestre_edit', {'id': semestre.id })}}" title="Modifier"><i class="fa fa-edit"></i></a>
                                   </td>
                               </tr>
                           {% endfor %}
@@ -63,7 +59,7 @@
         <div class="col-sm-6">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Modification et Suppression d'une Année académique</h3>
+                    <h3 class="panel-title">Modification et Suppression de semestre</h3>
                 </div>
                 {{ form_start(edit_form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm', 'onsubmit': 'return confirm("Voulez - vous vraiment modifier cette année académique ?")' }}) }}
                 <div class="panel-body">
@@ -71,36 +67,10 @@
                       <div class="col-xs-10 col-xs-offset-1">
                           <div class="form-group">
                               <div class="row">
-                                  <label class="col-sm-3 text-right control-label">Année académique</label>
+                                  <label class="col-sm-3 text-right control-label">Libellé</label>
                                     <div class="col-sm-8">
-                                      {{ form_widget(edit_form.debutannee) }}
-                                      {{ form_errors(edit_form.debutannee) }}
-                                    </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-xs-10 col-xs-offset-1">
-                          <div class="form-group">
-                              <div class="row">
-                                  <label class="col-sm-3 text-right control-label">Session examen</label>
-                                    <div class="col-sm-8">
-                                      {{ form_widget(edit_form.libsessionexam) }}
-                                      {{ form_errors(edit_form.libsessionexam) }}
-                                    </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-xs-10 col-xs-offset-1">
-                          <div class="form-group">
-                              <div class="row">
-                                  <label class="col-sm-3 text-right control-label">Date examen</label>
-                                    <div class="col-sm-8">
-                                      {{ form_widget(edit_form.datecomexam) }}
-                                      {{ form_errors(edit_form.datecomexam) }}
+                                      {{ form_widget(edit_form.libsemestre) }}
+                                      {{ form_errors(edit_form.libsemestre) }}
                                     </div>
                               </div>
                           </div>
@@ -113,13 +83,12 @@
                             <button class="btn btn-default" type="reset">Annuler</button>
                             <button class="btn btn-primary" type="submit">Modifier</button>
                         </div>
-
                     </div>
                     <br>
                     {{ form_end(edit_form)}}
                     <div class="row">
                       <div class="col-sm-7 col-sm-offset-4 text-right">
-                          {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Voulez-vous vraiment supprimer cette année académique ?")'}})}}
+                          {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Voulez-vous vraiment supprimer ce semestre ?")'}})}}
                           <button class="btn btn-danger" type="submit">Supprimer</button>
                           {{ form_end(delete_form)}}
                       </div>
@@ -132,6 +101,4 @@
     </div>
 
 </div>
-
-
 {% endblock %}

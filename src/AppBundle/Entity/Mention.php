@@ -57,6 +57,14 @@ class Mention
       */
       private $parcours;
 
+      /**
+       * une Mention a plusieurs Ue
+       *
+       * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ue", mappedBy="mention")
+       */
+       private $ues;
+
+
 
     /**
      * Get id
@@ -209,4 +217,39 @@ class Mention
     public function __toString(){
         return $this->libmention;
       }
+
+    /**
+     * Add ue
+     *
+     * @param \AppBundle\Entity\Ue $ue
+     *
+     * @return Mention
+     */
+    public function addUe(\AppBundle\Entity\Ue $ue)
+    {
+        $this->ues[] = $ue;
+
+        return $this;
+    }
+
+    /**
+     * Remove ue
+     *
+     * @param \AppBundle\Entity\Ue $ue
+     */
+    public function removeUe(\AppBundle\Entity\Ue $ue)
+    {
+        $this->ues->removeElement($ue);
+    }
+
+    /**
+     * Get ues
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUes()
+    {
+        return $this->ues;
+    }
+
 }

@@ -28,6 +28,13 @@ class Semestre
      */
     private $libsemestre;
 
+    /**
+     * un Semestre a plusieurs Ue
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ue", mappedBy="semestre")
+     */
+     private $ues;
+
 
     /**
      * Get id
@@ -62,5 +69,48 @@ class Semestre
     {
         return $this->libsemestre;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ues = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add ue
+     *
+     * @param \AppBundle\Entity\Ue $ue
+     *
+     * @return Semestre
+     */
+    public function addUe(\AppBundle\Entity\Ue $ue)
+    {
+        $this->ues[] = $ue;
+
+        return $this;
+    }
+
+    /**
+     * Remove ue
+     *
+     * @param \AppBundle\Entity\Ue $ue
+     */
+    public function removeUe(\AppBundle\Entity\Ue $ue)
+    {
+        $this->ues->removeElement($ue);
+    }
+
+    /**
+     * Get ues
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUes()
+    {
+        return $this->ues;
+    }
+    public function __toString(){
+      return $this->libsemestre;
+    }
+}

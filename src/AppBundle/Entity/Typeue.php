@@ -28,6 +28,14 @@ class Typeue
      */
     private $libtypeue;
 
+    /**
+     * un Typeue a plusieurs Ue
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ue", mappedBy="typeue")
+     */
+     private $ues;
+
+
 
     /**
      * Get id
@@ -62,5 +70,7 @@ class Typeue
     {
         return $this->libtypeue;
     }
+    public function __toString(){
+      return $this->libtypeue;
+    }
 }
-

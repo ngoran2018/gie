@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ues list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libue</th>
+                <th>Abrevue</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ue in ues %}
+            <tr>
+                <td><a href="{{ path('ue_show', { 'id': ue.id }) }}">{{ ue.id }}</a></td>
+                <td>{{ ue.libue }}</td>
+                <td>{{ ue.abrevue }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ue_show', { 'id': ue.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ue_edit', { 'id': ue.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ue_new') }}">Create a new ue</a>
+        </li>
+    </ul>
+{% endblock %}

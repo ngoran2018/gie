@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class MentionRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function findMention($ecole){
+    $q = $this->createQueryBuilder('m')
+              ->join('m.filiere','f')
+              ->join('f.ecole','e')
+              ->where('e.id = :ecole')
+              ->setParameter('ecole',$ecole)
+
+    ;
+    return $q;
+
+  }
 }

@@ -50,9 +50,14 @@ class UeController extends Controller
 
             return $this->redirectToRoute('ue_new', array('ecole' => $ecole));
         }
+        $em = $this->getDoctrine()->getManager();
+
+        $ues = $em->getRepository('AppBundle:Ue')->findUeByEcole($ecole);
+
 
         return $this->render('ue/new.html.twig', array(
             'ue' => $ue,
+              'ues' => $ues,
             'form' => $form->createView(),
         ));
     }

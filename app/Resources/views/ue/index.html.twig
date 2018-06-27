@@ -1,41 +1,84 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+   Liste des Ues
+{% endblock %}
 
 {% block body %}
-    <h1>Ues list</h1>
+    <div class="pageheader">
+        <h3><i class="fa fa-home"></i>  Gestion des Ues</h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label"></span>
+            <ol class="breadcrumb">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Parametrage LMD</a></li>
+                <li class="active">Ue</li>
+            </ol>
+        </div>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libue</th>
-                <th>Abrevue</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ue in ues %}
-            <tr>
-                <td><a href="{{ path('ue_show', { 'id': ue.id }) }}">{{ ue.id }}</a></td>
-                <td>{{ ue.libue }}</td>
-                <td>{{ ue.abrevue }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('ue_show', { 'id': ue.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ue_edit', { 'id': ue.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div id="page-content">
+      <br>
+      <div class="row">
+          <div class="col-sm-12 text-right">
+            <a href="{{path('ue_new', {'ecole': ecole})}}" class="btn btn-default">Ajouter une Ue</a>
+          </div>
+      </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('ue_new') }}">Create a new ue</a>
-        </li>
-    </ul>
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liste des Ues</h3>
+                    </div>
+
+                    <div class="panel-body">
+                      <table class="table table-striped" id="demo-dt-basic" class="table table-striped table-bordered">
+                          <thead>
+                          <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-left">Mention</th>
+                              <th class="text-left">Semestre</th>
+                              <th class="text-left">Libellé Ue</th>
+                              <th class="text-left">Code Ue</th>
+                              <th class="text-left">Action</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          {% for ue in ues %}
+                              <tr>
+                                  <td class="text-center">{{ loop.index }}</td>
+                                  <td>{{ ue.mention.abrevmention }}</td>
+                                  <td>{{ ue.semestre }}</td>
+                                  <td>{{ ue.libue }}</td>
+                                  <td>{{ ue.abrevue}}</td>
+                                    <td><a href="{{ path('ue_edit', {'id': ue.id, 'ecole': ecole })}}" title="Modifier Ue"><i class="fa fa-edit"></i></a></td>
+                              </tr>
+                          {% endfor %}
+                          </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/datatables/media/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/sygesca-form-validation.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/datatables/media/js/jquery.dataTables.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/datatables/media/js/dataTables.bootstrap.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/demo/tables-datatables.js')}}"></script>
 {% endblock %}

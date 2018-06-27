@@ -28,6 +28,7 @@ class UeController extends Controller
 
         return $this->render('ue/index.html.twig', array(
             'ues' => $ues,
+            'ecole' => $ecole,
         ));
     }
 
@@ -45,6 +46,7 @@ class UeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $ue->setAbrevue(strtoupper($ue->getAbrevue()));
             $em->persist($ue);
             $em->flush();
 
@@ -58,6 +60,7 @@ class UeController extends Controller
         return $this->render('ue/new.html.twig', array(
             'ue' => $ue,
               'ues' => $ues,
+              'ecole' => $ecole,
             'form' => $form->createView(),
         ));
     }
@@ -81,23 +84,29 @@ class UeController extends Controller
     /**
      * Displays a form to edit an existing ue entity.
      *
-     * @Route("/{id}/edit", name="ue_edit")
+     * @Route("/{id}/edit/{ecole}", name="ue_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Ue $ue)
+    public function editAction(Request $request, Ue $ue, $ecole)
     {
         $deleteForm = $this->createDeleteForm($ue);
-        $editForm = $this->createForm('AppBundle\Form\UeType', $ue);
+        $editForm = $this->createForm('AppBundle\Form\UeType', $ue,  array('ecole'=>$ecole));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('ue_edit', array('id' => $ue->getId()));
+            return $this->redirectToRoute('ue_edit', array('id' => $ue->getId(), 'ecole'=> $ecole));
         }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $ues = $em->getRepository('AppBundle:Ue')->findUeByEcole($ecole);
+
 
         return $this->render('ue/edit.html.twig', array(
             'ue' => $ue,
+            'ues' => $ues,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

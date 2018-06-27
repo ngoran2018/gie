@@ -33,7 +33,7 @@ class UeType extends AbstractType
         ->add('abrevue', TextType::class,array(
           'attr'=> array(
             'class'=> 'form-control',
-            'placeholder'=>'Abréviation',
+            'placeholder'=>'Code Ue',
             'autocomplete'=>'off'
 
           )

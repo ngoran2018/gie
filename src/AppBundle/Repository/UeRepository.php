@@ -19,9 +19,24 @@ class UeRepository extends \Doctrine\ORM\EntityRepository
                 ->join('m.filiere','f')
                 ->join('f.ecole','e')
                 ->where('e.id = :ecole')
+                ->orderBy('m.abrevmention')
                 ->setParameter('ecole', $ecole)
                 ->getQuery()->getResult()
      ;
      return $qb;
    }
+
+   /**
+    * Requete liste ue correspondant à l'ecole selectionnée
+    */
+    public function findUe($ecole){
+      $qb = $this->createQueryBuilder('u')
+                 ->join('u.mention','m')
+                 ->join('m.filiere','f')
+                 ->join('f.ecole','e')
+                 ->where('e.id = :ecole')
+                 ->setParameter('ecole', $ecole)
+      ;
+      return $qb;
+    }
 }

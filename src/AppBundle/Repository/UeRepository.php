@@ -39,4 +39,14 @@ class UeRepository extends \Doctrine\ORM\EntityRepository
       ;
       return $qb;
     }
+
+    /**
+     * Requete ue selectionnée
+     */
+     public function RechercheUe($ue){
+       $qb = $this->createQueryBuilder('u')
+                  ->where('u.id = :ue')
+                  ->setParameter('ue', $ue);
+         return $qb;
+     }
 }

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ecues list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libecue</th>
+                <th>Abrevecue</th>
+                <th>Creditecue</th>
+                <th>Ctt</th>
+                <th>Cours</th>
+                <th>Tp</th>
+                <th>Tpe</th>
+                <th>Autre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ecue in ecues %}
+            <tr>
+                <td><a href="{{ path('ecue_show', { 'id': ecue.id }) }}">{{ ecue.id }}</a></td>
+                <td>{{ ecue.libecue }}</td>
+                <td>{{ ecue.abrevecue }}</td>
+                <td>{{ ecue.creditecue }}</td>
+                <td>{{ ecue.ctt }}</td>
+                <td>{{ ecue.cours }}</td>
+                <td>{{ ecue.tp }}</td>
+                <td>{{ ecue.tpe }}</td>
+                <td>{{ ecue.autre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ecue_show', { 'id': ecue.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ecue_edit', { 'id': ecue.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ecue_new') }}">Create a new ecue</a>
+        </li>
+    </ul>
+{% endblock %}

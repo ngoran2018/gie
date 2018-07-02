@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-   Enregistrement des Ues
+   Enregistrement des Ecues
 {% endblock %}
 
 {% block body %}
     <div class="pageheader">
-        <h3><i class="fa fa-home"></i>  Gestion des Ues</h3>
+        <h3><i class="fa fa-home"></i>  Gestion des Ecues</h3>
         <div class="breadcrumb-wrapper">
             <span class="label"></span>
             <ol class="breadcrumb">
@@ -15,16 +15,12 @@
             </ol>
         </div>
     </div>
-
     <div id="page-content">
-
-
         <div class="row">
-
             <div class="col-sm-12">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Enregistrement des Ues</h3>
+                        <h3 class="panel-title">Enregistrement des Ecues</h3>
                     </div>
                     {{ form_start(form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm' }}) }}
                     <div class="panel-body">
@@ -32,10 +28,10 @@
                           <div class="col-xs-10 col-xs-offset-1">
                               <div class="form-group">
                                   <div class="row">
-                                      <label class="col-sm-2 text-right control-label">Libellé Mention</label>
+                                      <label class="col-sm-2 text-right control-label">Libellé Ue</label>
                                         <div class="col-sm-9">
-                                          {{ form_widget(form.mention) }}
-                                          {{ form_errors(form.mention) }}
+                                          {{ form_widget(form.ue) }}
+                                          {{ form_errors(form.ue) }}
                                         </div>
                                   </div>
                               </div>
@@ -48,20 +44,20 @@
                                     <div class="row">
                                       <div class="col-sm-6">
                                       <div class="row">
-                                        <label class="col-sm-4 text-right control-label">Semestre</label>
+                                        <label class="col-sm-4 text-right control-label">Libelle Ecue</label>
                                           <div class="col-sm-8">
-                                            {{ form_widget(form.semestre) }}
-                                            {{ form_errors(form.semestre) }}
+                                            {{ form_widget(form.libecue) }}
+                                            {{ form_errors(form.libecue) }}
 
                                           </div>
                                       </div>
                                       </div>
                                       <div class="col-sm-6">
                                         <div class="row">
-                                          <label class="col-sm-2 text-right control-label">Type</label>
+                                          <label class="col-sm-2 text-right control-label">Abréviation</label>
                                             <div class="col-sm-8">
-                                              {{ form_widget(form.typeue) }}
-                                              {{ form_errors(form.typeue) }}
+                                              {{ form_widget(form.abrevecue) }}
+                                              {{ form_errors(form.abrevecue) }}
 
                                             </div>
                                         </div>
@@ -78,20 +74,74 @@
                                     <div class="row">
                                       <div class="col-sm-6">
                                         <div class="row">
-                                          <label class="col-sm-4 text-right control-label">Libellé Ue</label>
+                                          <label class="col-sm-4 text-right control-label">Crédit Ecue</label>
                                             <div class="col-sm-8">
-                                              {{ form_widget(form.libue) }}
-                                              {{ form_errors(form.libue) }}
+                                              {{ form_widget(form.creditecue) }}
+                                              {{ form_errors(form.creditecue) }}
 
                                             </div>
                                         </div>
                                       </div>
                                         <div class="col-sm-6">
                                           <div class="row">
-                                            <label class="col-sm-2 text-right control-label">Code Ue</label>
+                                            <label class="col-sm-2 text-right control-label">COURS</label>
                                               <div class="col-sm-8">
-                                                {{ form_widget(form.abrevue) }}
-                                                {{ form_errors(form.abrevue) }}
+                                                {{ form_widget(form.cours) }}
+                                                {{ form_errors(form.cours) }}
+                                              </div>
+                                          </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                          <div class="row">
+                                            <label class="col-sm-4 text-right control-label">TP</label>
+                                              <div class="col-sm-8">
+                                                {{ form_widget(form.tp) }}
+                                                {{ form_errors(form.tp) }}
+                                              </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                          <div class="row">
+                                            <label class="col-sm-2 text-right control-label">AUTRE</label>
+                                              <div class="col-sm-8">
+                                                {{ form_widget(form.autre) }}
+                                                {{ form_errors(form.autre) }}
+                                              </div>
+                                          </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                          <div class="row">
+                                            <label class="col-sm-4 text-right control-label">TPE</label>
+                                              <div class="col-sm-8">
+                                                {{ form_widget(form.tpe) }}
+                                                {{ form_errors(form.tpe) }}
+                                              </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                          <div class="row">
+                                            <label class="col-sm-2 text-right control-label">CTT</label>
+                                              <div class="col-sm-8">
+                                                {{ form_widget(form.ctt) }}
+                                                {{ form_errors(form.ctt) }}
                                               </div>
                                           </div>
                                         </div>
@@ -128,24 +178,22 @@
                         <thead>
                         <tr>
                             <th class="text-center">#</th>
-                            <th class="text-left">Mention</th>
-                            <th class="text-left">Semestre</th>
-                            <th class="text-left">Libellé Ue</th>
-                            <th class="text-left">Code Ue</th>
+                            <th class="text-left">Libellé Ecue</th>
+                            <th class="text-left">Crédit Ecue</th>
+                            <th class="text-left">Cours</th>
+                            <th class="text-left">Tp</th>
                             <th class="text-left">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for ue in ues %}
+                        {% for ecue in ecues %}
                             <tr>
                                 <td class="text-center">{{ loop.index }}</td>
-                                <td>{{ ue.mention.abrevmention }}</td>
-                                <td>{{ ue.semestre }}</td>
-                                <td>{{ ue.libue }}</td>
-                                <td>{{ ue.abrevue}}</td>
-                                  <td><a href="{{ path('ue_edit', {'id': ue.id, 'ecole': ecole })}}" title="Modifier Ue"><i class="fa fa-edit"></i></a>
-                                    |
-                                    <a href="{{ path('ecue_new', {'ue': ue.id })}}" title="Enregistrer un Ecue"><i class="fa fa-plus"></i></a></td>
+                                <td>{{ ecue.libecue }}</td>
+                                <td>{{ ecue.creditecue }}</td>
+                                <td>{{ ecue.cours }}</td>
+                                <td>{{ ecue.tp}}</td>
+                                  <td><a href="{{ path('ecue_edit', {'id': ecue.id})}}" title="Modifier Ecue"><i class="fa fa-edit"></i></a></td>
                         {% endfor %}
                         </tbody>
                     </table>

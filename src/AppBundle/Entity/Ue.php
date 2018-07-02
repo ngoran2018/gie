@@ -58,6 +58,12 @@ class Ue
        * @ORM\JoinColumn(name="mention_id", referencedColumnName="id")
        */
        private $mention;
+       /**
+        * une Ue a plusieurs Ecues
+        *
+        * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ecue", mappedBy="ue")
+        */
+        private $ecues;
 
 
 
@@ -189,5 +195,49 @@ class Ue
     public function getMention()
     {
         return $this->mention;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ecues = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ecue
+     *
+     * @param \AppBundle\Entity\Ecue $ecue
+     *
+     * @return Ue
+     */
+    public function addEcue(\AppBundle\Entity\Ecue $ecue)
+    {
+        $this->ecues[] = $ecue;
+
+        return $this;
+    }
+
+    /**
+     * Remove ecue
+     *
+     * @param \AppBundle\Entity\Ecue $ecue
+     */
+    public function removeEcue(\AppBundle\Entity\Ecue $ecue)
+    {
+        $this->ecues->removeElement($ecue);
+    }
+
+    /**
+     * Get ecues
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEcues()
+    {
+        return $this->ecues;
+    }
+    public function __toString(){
+      return $this->libue;
     }
 }

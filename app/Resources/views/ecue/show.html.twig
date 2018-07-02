@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ecue</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ecue.id }}</td>
+            </tr>
+            <tr>
+                <th>Libecue</th>
+                <td>{{ ecue.libecue }}</td>
+            </tr>
+            <tr>
+                <th>Abrevecue</th>
+                <td>{{ ecue.abrevecue }}</td>
+            </tr>
+            <tr>
+                <th>Creditecue</th>
+                <td>{{ ecue.creditecue }}</td>
+            </tr>
+            <tr>
+                <th>Ctt</th>
+                <td>{{ ecue.ctt }}</td>
+            </tr>
+            <tr>
+                <th>Cours</th>
+                <td>{{ ecue.cours }}</td>
+            </tr>
+            <tr>
+                <th>Tp</th>
+                <td>{{ ecue.tp }}</td>
+            </tr>
+            <tr>
+                <th>Tpe</th>
+                <td>{{ ecue.tpe }}</td>
+            </tr>
+            <tr>
+                <th>Autre</th>
+                <td>{{ ecue.autre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ecue_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('ecue_edit', { 'id': ecue.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

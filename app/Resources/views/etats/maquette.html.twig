@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+   Visualisation
+{% endblock %}
+
+{% block body %}
+    <div class="pageheader">
+        <h3><i class="fa fa-home"></i>Maquette</h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label"></span>
+            <ol class="breadcrumb">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Imprimés</a></li>
+                <li class="active">Maquette</li>
+            </ol>
+        </div>
+    </div>
+    <div id="page-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"></h3>
+                    </div>
+
+                  
+                    <div class="panel-body">
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+
+                             <div class="form-group">
+                                <div class="row">
+                                      <label class="col-sm-2 text-right control-label">Libellé Ecole</label>
+                                        <div class="col-sm-9">
+                                       <select name="ecole" class="form-control">
+                                       {% for ecole in ecoles %}
+                                         <option value="{{ecole.id}}">{{ecole.libecole}}</option>   
+                                       {% endfor %}
+                                       </select>
+                                        </div>
+                                  </div>
+        
+                              </div>
+                              <div class="form-group">
+                                <div class="row">
+                                      <label class="col-sm-2 text-right control-label">Libellé Filière</label>
+                                        <div class="col-sm-9">
+                                       <select name="filiere" class="form-control">
+                                       {% for filiere in filieres %}
+                                         <option value="{{filiere.id}}">{{filiere.libfiliere}}</option>   
+                                       {% endfor %}
+                                       </select>
+                                        </div>
+                                  </div>
+        
+                              </div>
+                              <div class="form-group">
+                                <div class="row">
+                                      <label class="col-sm-2 text-right control-label">Libellé Mention</label>
+                                        <div class="col-sm-9">
+                                       <select name="mention" class="form-control">
+                                       {% for mention in mentions %}
+                                         <option value="{{mention.id}}">{{mention.libmention}}</option>   
+                                       {% endfor %}
+                                       </select>
+                                        </div>
+                                  </div>
+        
+                              </div>
+                              <div class="form-group">
+                                <div class="row">
+                                      <label class="col-sm-2 text-right control-label">Libellé Spécialité</label>
+                                        <div class="col-sm-9">
+                                       <select name="parcours" class="form-control">
+                                       {% for parcours in parcours %}
+                                         <option value="{{parcours.id}}">{{parcours.libparcours}}</option>   
+                                       {% endfor %}
+                                       </select>
+                                        </div>
+                                  </div>
+        
+                              </div>
+                              
+                          </div>
+                      </div>
+
+                        <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-7 col-sm-offset-3 text-right">
+                                <button class="btn btn-default" type="reset">Annuler</button>
+                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                      <div class="col-sm-12" style="margin-top:30px">
+
+                      </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/datatables/media/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/sygesca-form-validation.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/datatables/media/js/jquery.dataTables.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/datatables/media/js/dataTables.bootstrap.js')}}"></script>
+    <script src="{{ asset('ressources/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/demo/tables-datatables.js')}}"></script>
+{% endblock %}

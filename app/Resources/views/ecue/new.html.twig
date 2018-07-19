@@ -22,11 +22,24 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Enregistrement des Ecues</h3>
                     </div>
+
                     {{ form_start(form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm' }}) }}
                     <div class="panel-body">
                       <div class="row">
                           <div class="col-xs-10 col-xs-offset-1">
+
+                             <div class="form-group">
+                                <div class="row">
+                                      <label class="col-sm-2 text-right control-label">Libellé Mention</label>
+                                        <div class="col-sm-9">
+                                       <input type="text" value="{{ ue.mention.libmention}}" class="form-control" readonly></input>
+                                        </div>
+                                  </div>
+
+                                  
+                              </div>
                               <div class="form-group">
+                                
                                   <div class="row">
                                       <label class="col-sm-2 text-right control-label">Libellé Ue</label>
                                         <div class="col-sm-9">

@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class EcueRepository extends \Doctrine\ORM\EntityRepository
 {
+  /**
+   * Requete Ecue selectionné
+   */
+   public function RechercheEcue($ecue){
+     $qb = $this->createQueryBuilder('u')
+                ->where('u.id = :ecue')
+                ->setParameter('ecue', $ecue);
+       return $qb;
+   }
 }

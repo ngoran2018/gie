@@ -55,10 +55,13 @@ class EcueController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $ecues = $em->getRepository('AppBundle:Ecue')->findBy(array('ue' =>$ue));
+        $ue = $em->getRepository('AppBundle:Ue')->findOneBy(array('id' =>$ue));
+        //dump($ue); die();
 
         return $this->render('ecue/new.html.twig', array(
             'ecue' => $ecue,
             'ecues' => $ecues,
+            'ue' => $ue,
             'form' => $form->createView(),
         ));
     }
@@ -87,9 +90,9 @@ class EcueController extends Controller
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Ecue $ecue)
-    {
+    { //dump($ecue); die;
         $deleteForm = $this->createDeleteForm($ecue);
-        $editForm = $this->createForm('AppBundle\Form\EcueType', $ecue);
+        $editForm = $this->createForm('AppBundle\Form\EcueType', $ecue, array('ue'=>$ecue->getUe()->getId()));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -97,6 +100,10 @@ class EcueController extends Controller
 
             return $this->redirectToRoute('ecue_edit', array('id' => $ecue->getId()));
         }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $ecues = $em->getRepository('AppBundle:Ecue')->findBy(array('id' =>$ecue));
 
         return $this->render('ecue/edit.html.twig', array(
             'ecue' => $ecue,

@@ -118,7 +118,7 @@ class UeController extends Controller
      * @Route("/{id}", name="ue_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Ue $ue)
+    public function deleteAction(Request $request, Ue $ue, $ecole)
     {
         $form = $this->createDeleteForm($ue);
         $form->handleRequest($request);
@@ -129,7 +129,7 @@ class UeController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('ue_index');
+        return $this->redirectToRoute('ue_edit');
     }
 
     /**

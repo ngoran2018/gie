@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 
 class MentionType extends AbstractType
@@ -37,6 +38,14 @@ class MentionType extends AbstractType
                 'placeholder'=>'Abréviation',
                 'autocomplete'=>'off'
 
+              )
+            ))
+            ->add('mthoraire', IntegerType::class,array(
+              'attr'=> array(
+                'class'=> 'form-control',
+                'placeholder'=>'Montant horaire',
+                'autocomplete'=>'off'
+    
               )
             ))
             ->add('niveau', ChoiceType::class,array(

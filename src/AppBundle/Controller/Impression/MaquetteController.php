@@ -16,12 +16,10 @@ class MaquetteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $ecoles = $em->getRepository('AppBundle:Ecole')->findAll();
-        $filieres = $em->getRepository('AppBundle:Filiere')->findAll();
+        $filieres = $em->getRepository('AppBundle:Filiere')->findFiliereByFormation('LMD');
         $mentions = $em->getRepository('AppBundle:Mention')->findAll();
         $parcours = $em->getRepository('AppBundle:Parcours')->findAll();
-
-
-        
+    
         return $this->render('etats/maquette.html.twig', [
             'ecoles' => $ecoles,
             'filieres' => $filieres,
@@ -30,5 +28,21 @@ class MaquetteController extends Controller
         ]);
     }
 
-    
+   /**
+    * Creation fonction pour filtrer la filière selon l'école
+    *
+    * @Route("/filtre-filiere/", name="filtre_filiere")
+    */
+    public function filtrefiliereAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $ecoleId = $request->get('idEcole');
+        $filieres = $em->getRepository('AppBundle:Filiere')
+                        ->findFiliere($ecoleId)
+                        ->getQuery()->getResult()
+                        ;
+         return $this->render('etats/filtre_filiere.html.twig', [
+            'filieres' => $filieres,
+  
+        ]);
+    } 
 }

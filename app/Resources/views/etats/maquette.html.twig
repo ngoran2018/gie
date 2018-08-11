@@ -32,7 +32,8 @@
                                 <div class="row">
                                       <label class="col-sm-2 text-right control-label">Libellé Ecole</label>
                                         <div class="col-sm-9">
-                                       <select name="ecole" class="form-control">
+                                       <select name="ecole" id="ecole" class="form-control" onchange='ecole()'>
+                                         <option value="-1">-- Selectionnez l'ecole --</option>
                                        {% for ecole in ecoles %}
                                          <option value="{{ecole.id}}">{{ecole.libecole}}</option>   
                                        {% endfor %}
@@ -45,10 +46,8 @@
                                 <div class="row">
                                       <label class="col-sm-2 text-right control-label">Libellé Filière</label>
                                         <div class="col-sm-9">
-                                       <select name="filiere" class="form-control">
-                                       {% for filiere in filieres %}
-                                         <option value="{{filiere.id}}">{{filiere.libfiliere}}</option>   
-                                       {% endfor %}
+                                       <select name="filiere" id="filiere" class="form-control">
+                                       <option value="-1"> -- Selectionnez la filiere --</option>   
                                        </select>
                                         </div>
                                   </div>
@@ -58,10 +57,8 @@
                                 <div class="row">
                                       <label class="col-sm-2 text-right control-label">Libellé Mention</label>
                                         <div class="col-sm-9">
-                                       <select name="mention" class="form-control">
-                                       {% for mention in mentions %}
-                                         <option value="{{mention.id}}">{{mention.libmention}}</option>   
-                                       {% endfor %}
+                                       <select name="mention" id="mention" class="form-control">
+                                         <option value="-1">-- Selectionnez la metion --</option>   
                                        </select>
                                         </div>
                                   </div>
@@ -123,4 +120,50 @@
     <script src="{{ asset('ressources/plugins/datatables/media/js/dataTables.bootstrap.js')}}"></script>
     <script src="{{ asset('ressources/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{ asset('ressources/js/demo/tables-datatables.js')}}"></script>
+    <script type='text/javascript'>
+	 
+			function getXhr(){
+                            var xhr = null;
+				if(window.XMLHttpRequest){ 
+				   xhr = new XMLHttpRequest(); 
+				   
+				}
+				else if(window.ActiveXObject){  
+				   try {
+							xhr = new ActiveXObject("Msxml2.XMLHTTP");
+						} catch (e) {
+							xhr = new ActiveXObject("Microsoft.XMLHTTP");
+						}
+				}
+				else {
+				   alert("Votre navigateur ne supporte pas les objets XMLHttpRequest..."); 
+				   xhr = false; 
+				} 
+                 return xhr;
+			}
+			
+			
+
+			/**
+            * Fonction sera appelée à la selection de l'école
+            */
+			function ecole(){ //die('ici')
+				
+				var xhr = getXhr();
+					
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						di = document.getElementById('filiere');
+						di.innerHTML = xhr.responseText;
+					}
+				}
+
+				xhr.open("POST","{{ path('filtre_filiere') }}",true);
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				idEcole = document.getElementById('ecole').options[document.getElementById('ecole').selectedIndex].value;
+				xhr.send("idEcole="+idEcole);				
+				
+			}
+
+		</script>
 {% endblock %}

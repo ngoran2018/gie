@@ -34,6 +34,12 @@ class Mention
      * @ORM\Column(name="abrevmention", type="string", length=255)
      */
     private $abrevmention;
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="mthoraire", type="integer")
+     */
+    private $mthoraire;
 
     /**
      * @var string
@@ -252,4 +258,28 @@ class Mention
         return $this->ues;
     }
 
+
+    /**
+     * Set mthoraire
+     *
+     * @param integer $mthoraire
+     *
+     * @return Mention
+     */
+    public function setMthoraire($mthoraire)
+    {
+        $this->mthoraire = $mthoraire;
+
+        return $this;
+    }
+
+    /**
+     * Get mthoraire
+     *
+     * @return integer
+     */
+    public function getMthoraire()
+    {
+        return $this->mthoraire;
+    }
 }

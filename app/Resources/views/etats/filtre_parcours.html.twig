@@ -1,0 +1,9 @@
+<select name="parcours" id="parcours" class="form-control">
+<option value="-1"> -- Sélectionnez un Parcours --</option>
+<option value="-1"></option>
+{% for parcours in parcours %}
+ <option value="{{parcours.id}}">{{parcours.libparcours}}</option>   
+{% else %}
+   <option value="-1"> -- Aucun Parcours trouvé--</option>
+{% endfor %}   
+</select>

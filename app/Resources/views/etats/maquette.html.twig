@@ -33,7 +33,7 @@
                                       <label class="col-sm-2 text-right control-label">Libellé Ecole</label>
                                         <div class="col-sm-9">
                                        <select name="ecole" id="ecole" class="form-control" onchange='ecole()'>
-                                         <option value="-1">-- Selectionnez l'ecole --</option>
+                                         <option value="-1">-- Sélectionnez une Ecole --</option>
                                        {% for ecole in ecoles %}
                                          <option value="{{ecole.id}}">{{ecole.libecole}}</option>   
                                        {% endfor %}
@@ -46,8 +46,11 @@
                                 <div class="row">
                                       <label class="col-sm-2 text-right control-label">Libellé Filière</label>
                                         <div class="col-sm-9">
-                                       <select name="filiere" id="filiere" class="form-control">
-                                       <option value="-1"> -- Selectionnez la filiere --</option>   
+                                       <select name="filiere" id="filiere" class="form-control" onchange="filiere()">
+                                       <option value="-1"> -- Sélectionnez une Filière --</option> 
+                                        {% for filiere in filieres %}
+                                         <option value="{{filiere.id}}">{{filiere.libfiliere}}</option>   
+                                       {% endfor %}
                                        </select>
                                         </div>
                                   </div>
@@ -57,8 +60,11 @@
                                 <div class="row">
                                       <label class="col-sm-2 text-right control-label">Libellé Mention</label>
                                         <div class="col-sm-9">
-                                       <select name="mention" id="mention" class="form-control">
-                                         <option value="-1">-- Selectionnez la metion --</option>   
+                                       <select name="mention" id="mention" class="form-control" onchange="mention()">
+                                         <option value="-1">-- Sélectionnez une Mention --</option>
+                                        {% for mention in mentions %}
+                                         <option value="{{mention.id}}">{{mention.libmention}}</option>   
+                                       {% endfor %}
                                        </select>
                                         </div>
                                   </div>
@@ -68,10 +74,8 @@
                                 <div class="row">
                                       <label class="col-sm-2 text-right control-label">Libellé Spécialité</label>
                                         <div class="col-sm-9">
-                                       <select name="parcours" class="form-control">
-                                       {% for parcours in parcours %}
-                                         <option value="{{parcours.id}}">{{parcours.libparcours}}</option>   
-                                       {% endfor %}
+                                       <select name="parcours" id="parcours" class="form-control">
+                                       <option value="-1">-- Sélectionnez un parcours --</option>
                                        </select>
                                         </div>
                                   </div>
@@ -162,6 +166,48 @@
 				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 				idEcole = document.getElementById('ecole').options[document.getElementById('ecole').selectedIndex].value;
 				xhr.send("idEcole="+idEcole);				
+				
+			}
+
+            /**
+            * Fonction  recuperation mentions de la filiere
+            */
+			function filiere(){ //die(alert('fuction'));
+				
+				var xhr = getXhr();
+					
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						di = document.getElementById('mention');
+						di.innerHTML = xhr.responseText;
+					}
+				}
+
+				xhr.open("POST","{{ path('filtre_mention') }}",true);
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				idFiliere = document.getElementById('filiere').options[document.getElementById('filiere').selectedIndex].value;
+				xhr.send("idFiliere="+idFiliere);				
+				
+			}
+
+            /**
+            * Fonction  recuperation Spécialités de la Mention
+            */
+			function mention(){ //die(alert('fuction'));
+				
+				var xhr = getXhr();
+					
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						di = document.getElementById('parcours');
+						di.innerHTML = xhr.responseText;
+					}
+				}
+
+				xhr.open("POST","{{ path('filtre_parcours') }}",true);
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				idMention = document.getElementById('mention').options[document.getElementById('mention').selectedIndex].value;
+				xhr.send("idMention="+idMention);				
 				
 			}
 

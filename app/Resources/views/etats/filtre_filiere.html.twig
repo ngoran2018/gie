@@ -1,9 +1,9 @@
-<select name="filiere" id="filiere" class="form-control">
+<select name="filiere" id="filiere" class="form-control" onchange='filiere()'>
 <option value="-1"> -- Sélectionnez une Filière --</option>
 <option value="-1"></option>
 {% for filiere in filieres %}
  <option value="{{filiere.id}}">{{filiere.libfiliere}}</option>   
 {% else %}
-   
+  <option value="-1"> -- Aucune filiere trouvée --</option> 
 {% endfor %}   
 </select>

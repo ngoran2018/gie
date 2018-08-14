@@ -45,4 +45,38 @@ class MaquetteController extends Controller
   
         ]);
     } 
+
+    /**
+    * Creation fonction pour filtrer la mention selon la filière
+    *
+    * @Route("/filtre/mention/", name="filtre_mention")
+    */
+    public function filtrementionAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $filiereId = $request->get('idFiliere');
+        $mentions = $em->getRepository('AppBundle:Mention')
+                        ->findMentionByFiliere($filiereId)
+                        ;
+         return $this->render('etats/filtre_mention.html.twig', [
+            'mentions' => $mentions,
+  
+        ]);
+    } 
+
+     /**
+    * Creation fonction pour filtrer les parcours selon la Mention
+    *
+    * @Route("/filtre/parcours/", name="filtre_parcours")
+    */
+    public function filtreparcoursAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $mentionId = $request->get('idMention');
+        $parcours = $em->getRepository('AppBundle:Parcours')
+                        ->findParcoursByMention($mentionId)
+                        ;
+         return $this->render('etats/filtre_parcours.html.twig', [
+            'parcours' => $parcours,
+  
+        ]);
+    } 
 }

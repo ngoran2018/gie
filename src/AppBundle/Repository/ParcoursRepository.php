@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class ParcoursRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+   * Liste des Parcours de la Mention
+   */
+  public function findParcoursByMention($mention)
+  {
+    return $q = $this->createQueryBuilder('p')
+                      ->innerJoin('p.mention', 'm')
+                      ->andWhere('m.id = :mention')
+                      ->orderBy('p.libparcours', 'ASC')
+                      ->setParameter('mention', $mention)
+                      ->getQuery()->getResult()
+    ;
+  }
 }

@@ -21,4 +21,17 @@ class MentionRepository extends \Doctrine\ORM\EntityRepository
     return $q;
 
   }
+   /**
+   * Liste des mentions de la filière
+   */
+  public function findMentionByFiliere($filiere)
+  {
+    return $q = $this->createQueryBuilder('m')
+                      ->innerJoin('m.filiere', 'f')
+                      ->andWhere('f.id = :filiere')
+                      ->orderBy('m.libmention', 'ASC')
+                      ->setParameter('filiere', $filiere)
+                      ->getQuery()->getResult()
+    ;
+  }
 }

@@ -1,0 +1,9 @@
+<select name="mention" id="mention" class="form-control">
+<option value="-1"> -- Sélectionnez une Mention --</option>
+<option value="-1"></option>
+{% for mention in mentions %}
+ <option value="{{mention.id}}">{{mention.libmention}}</option>   
+{% else %}
+   <option value="-1"> -- Aucune Mention trouvée--</option>
+{% endfor %}   
+</select>

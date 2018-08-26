@@ -1,21 +1,140 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+   Modification d'un Utilisateur
+{% endblock %}
 
 {% block body %}
-    <h1>User edit</h1>
+    <div class="pageheader">
+        <h3><i class="fa fa-home"></i>  Gestion des Utilisateurs</h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label"></span>
+            <ol class="breadcrumb">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Securite</a></li>
+                <li class="active">Utilisateur</li>
+            </ol>
+        </div>
+    </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div id="page-content">
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Modification Utilisateur</h3>
+                    </div>
+                    {{ form_start(edit_form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm' }}) }}
+                    <div class="panel-body">
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                              <div class="form-group">
+                                  <div class="row">
+                                      <label class="col-sm-3 text-right control-label">Login</label>
+                                        <div class="col-sm-8">
+                                          {{ form_widget(edit_form.username) }}
+                                          {{ form_errors(edit_form.username) }}
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">Mot de passe</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(edit_form.plainPassword.first,{'attr':{'class':'form-control'}}) }}
+                                            {{ form_errors(edit_form.plainPassword.first) }}
+
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">Répéter le Mot de passe</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(edit_form.plainPassword.second,{'attr':{'class':'form-control'}}) }}
+                                            {{ form_errors(edit_form.plainPassword.second) }}
+
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">E-Mail</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(edit_form.email) }}
+                                            {{ form_errors(edit_form.email) }}
+
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">Role</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(edit_form.roles) }}
+                                            {{ form_errors(edit_form.roles) }}
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">Statut</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(edit_form.enabled) }}
+                                            {{ form_errors(edit_form.enabled) }}
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-7 col-sm-offset-3 text-right">
+                                <button class="btn btn-default" type="reset">Annuler</button>
+                                <button class="btn btn-primary" type="submit">Modifier</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(edit_form)}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/sygesca-form-validation.js')}}"></script>
 {% endblock %}

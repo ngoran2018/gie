@@ -23,4 +23,21 @@ class ParcoursRepository extends \Doctrine\ORM\EntityRepository
                       ->getQuery()->getResult()
     ;
   }
+
+    /**
+   * Recupération
+   */
+  public function findMaquettesByIdParcours($parcoursid)
+  {
+    return $q = $this->createQueryBuilder('p')
+                      ->addSelect('m')
+                      ->addSelect('f')
+                      ->innerJoin('p.mention', 'm')
+                      ->innerJoin('m.filiere', 'f')
+                      ->andWhere('p.id = :parcours')
+                      ->orderBy('p.libparcours', 'ASC')
+                      ->setParameter('mention', $mention)
+                      ->getQuery()->getResult()
+    ;
+  }
 }

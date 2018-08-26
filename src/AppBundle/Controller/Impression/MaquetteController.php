@@ -5,6 +5,8 @@ namespace AppBundle\Controller\Impression;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
 
 class MaquetteController extends Controller
 {
@@ -17,14 +19,14 @@ class MaquetteController extends Controller
 
         $ecoles = $em->getRepository('AppBundle:Ecole')->findAll();
         $filieres = $em->getRepository('AppBundle:Filiere')->findFiliereByFormation('LMD');
-        $mentions = $em->getRepository('AppBundle:Mention')->findAll();
-        $parcours = $em->getRepository('AppBundle:Parcours')->findAll();
+        //$mentions = $em->getRepository('AppBundle:Mention')->findAll();
+        //$parcours = $em->getRepository('AppBundle:Parcours')->findAll();
     
         return $this->render('etats/maquette.html.twig', [
             'ecoles' => $ecoles,
             'filieres' => $filieres,
-            'mentions' => $mentions,
-            'parcours' => $parcours,
+           // 'mentions' => $mentions,
+          //  'parcours' => $parcours,
         ]);
     }
 
@@ -78,5 +80,23 @@ class MaquetteController extends Controller
             'parcours' => $parcours,
   
         ]);
-    } 
+    }
+    
+      /**
+    * Creation fonction etat pdf
+    *
+    * @Route("/etat/maquette/", name="etat_maquette")
+    * @Method({"GET", "POST"})
+    */
+    public function pdfAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $parcoursId = $request->get('parcoursId');
+        $parcours = $em->getRepository('AppBundle:Parcours')
+                        ->findOneBy(array('id'=>$parcoursId)) ;// dump($parcours); die();
+         return $this->render('etats/filtre_parcours.html.twig', [
+            'parcours' => $parcours,
+  
+        ]);
+
+    }
 }

@@ -49,10 +49,11 @@ class UserType extends AbstractType
               'choices' => array(
                 'UTILISATEUR '  => 'ROLE_USER',
                 'ADMINISTRATEUR '  => 'ROLE_ADMIN',
-              ),
-              'attr'  => array(
-                  'class' => 'form-control',
-                  'autocomplete'  => 'off'
+                'PROFESSEUR '  => 'ROLE_PROF',
+                'DIRECTEUR '  => 'ROLE_DIR',
+                'COMPTABILITE '  => 'ROLE_COMPTA',
+                'SCOLARITE '  => 'ROLE_SCOLA',
+              
               ),
               'multiple'  => true,
               'expanded'  => true

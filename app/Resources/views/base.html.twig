@@ -53,7 +53,11 @@
                   <span class="pull-right">
                     <img class="img-circle img-user media-object" src="{{ asset('ressources/img/avatar.png')}}" alt="Profile Picture">
                   </span>
-                            <div class="username hidden-xs">{{ 'layout.user'|trans({'%username%': app.user.username}, 'FOSUserBundle')|title }}</div>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <div class="username hidden-xs">{{ 'layout.user'|trans({'%username%': app.user.username}, 'FOSUserBundle')|title }}</div>
+                            {% else %}
+                               {{ render(url('accueil'))}} 
+                            {% endif %}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right with-arrow">
                             <!-- User dropdown menu -->
@@ -241,6 +245,7 @@
 
 
 
+                                {% if is_granted('ROLE_ADMIN') %}
                                 <li class="list-divider"></li>
                                 <!--Category name-->
                                 <li class="list-header">Administrateur</li>
@@ -298,7 +303,7 @@
                                     <!--Submenu-->
                                     <ul class="collapse">
                                         <li>
-                                            <a href="#">
+                                            <a href="{{ path('admin_user_index')}}">
                                                 <i class="fa fa-caret-right"></i>Utilisateurs</a>
                                         </li>
                                         <li>
@@ -307,6 +312,8 @@
                                         </li>
                                     </ul>
                                 </li>
+                                {% endif %}
+                                
                             </ul>
                             <!--Widget-->
                             <!--================================-->

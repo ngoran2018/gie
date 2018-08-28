@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Heberge</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ heberge.id }}</td>
+            </tr>
+            <tr>
+                <th>Libheberge</th>
+                <td>{{ heberge.libheberge }}</td>
+            </tr>
+            <tr>
+                <th>Abrevheberge</th>
+                <td>{{ heberge.abrevheberge }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_heberge_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_heberge_edit', { 'id': heberge.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

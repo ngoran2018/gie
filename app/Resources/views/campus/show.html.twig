@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Campus</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ campus.id }}</td>
+            </tr>
+            <tr>
+                <th>Libcampus</th>
+                <td>{{ campus.libcampus }}</td>
+            </tr>
+            <tr>
+                <th>Abrevcampus</th>
+                <td>{{ campus.abrevcampus }}</td>
+            </tr>
+            <tr>
+                <th>Seuilcampus</th>
+                <td>{{ campus.seuilcampus }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_campus_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_campus_edit', { 'id': campus.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

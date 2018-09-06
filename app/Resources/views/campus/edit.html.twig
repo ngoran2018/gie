@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+   Modification et suppression
+{% endblock %}
+{% block body %}
+<div class="pageheader">
+    <h3><i class="fa fa-home"></i>  Gestion Campus</h3>
+    <div class="breadcrumb-wrapper">
+        <span class="label"></span>
+        <ol class="breadcrumb">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Configuration</a></li>
+            <li class="active">Campus</li>
+        </ol>
+    </div>
+</div>
+
+<div id="page-content">
+
+  <br>
+  <div class="row">
+      <div class="col-sm-12 text-right">
+        <a href="{{path('admin_campus_index')}}" class="btn btn-default">Liste Campuss</a>
+      </div>
+  </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Modification et Suppression de Campus</h3>
+                </div>
+                {{ form_start(edit_form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm', 'onsubmit': 'return confirm("Voulez - vous vraiment modifier cette filière ?")' }}) }}
+                <div class="panel-body">
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-offset-1">
+                          <div class="form-group">
+                              <div class="row">
+                                  <label class="col-sm-3 text-right control-label">Hébergement</label>
+                                    <div class="col-sm-8">
+                                      {{ form_widget(edit_form.heberge) }}
+                                      {{ form_errors(edit_form.heberge) }}
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-offset-1">
+                          <div class="form-group">
+                              <div class="row">
+                                  <label class="col-sm-3 text-right control-label">Campus</label>
+                                    <div class="col-sm-8">
+                                      {{ form_widget(edit_form.libcampus) }}
+                                      {{ form_errors(edit_form.libcampus) }}
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-offset-1">
+                          <div class="form-group">
+                              <div class="row">
+                                  <label class="col-sm-3 text-right control-label">Abréviation</label>
+                                    <div class="col-sm-8">
+                                      {{ form_widget(edit_form.abrevcampus) }}
+                                      {{ form_errors(edit_form.abrevcampus) }}
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-3 text-right control-label">Seuil</label>
+                                      <div class="col-sm-8">
+                                        {{ form_widget(edit_form.seuilcampus) }}
+                                        {{ form_errors(edit_form.seuilcampus) }}
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-7 col-sm-offset-3 text-right">
+                            <button class="btn btn-default" type="reset">Annuler</button>
+                            <button class="btn btn-primary" type="submit">Modifier</button>
+                        </div>
+
+                    </div>
+                    <br>
+                    {{ form_end(edit_form)}}
+                    <div class="row">
+                      <div class="col-sm-7 col-sm-offset-4 text-right">
+                          {{ form_start(delete_form, {'attr': {'onsubmit': 'return confirm("Voulez-vous vraiment supprimer ce Campus ?")'}})}}
+                          <button class="btn btn-danger" type="submit">Supprimer</button>
+                          {{ form_end(delete_form)}}
+                      </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

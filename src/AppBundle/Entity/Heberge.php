@@ -46,7 +46,12 @@ class Heberge
      * @ORM\Column(name="mtcautionheberge", type="integer")
      */
     private $mtcautionheberge;
-
+     /**
+     * un hébergement a plusieurs campus
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Campus", mappedBy="heberge")
+     */
+    private $campus;
 
     /**
      * Get id
@@ -153,4 +158,48 @@ class Heberge
     {
         return $this->mtcautionheberge;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->campus = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add campus
+     *
+     * @param \AppBundle\Entity\Campus $campus
+     *
+     * @return Heberge
+     */
+    public function addCampus(\AppBundle\Entity\Campus $campus)
+    {
+        $this->campus[] = $campus;
+
+        return $this;
+    }
+
+    /**
+     * Remove campus
+     *
+     * @param \AppBundle\Entity\Campus $campus
+     */
+    public function removeCampus(\AppBundle\Entity\Campus $campus)
+    {
+        $this->campus->removeElement($campus);
+    }
+
+    /**
+     * Get campus
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCampus()
+    {
+        return $this->campus;
+    }
+    public function __toString(){
+        return $this->getAbrevheberge();
+      }
 }

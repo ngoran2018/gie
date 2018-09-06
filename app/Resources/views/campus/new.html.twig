@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+   Enregistrement Campus
+{% endblock %}
+
+{% block body %}
+    <div class="pageheader">
+        <h3><i class="fa fa-home"></i>  Gestion Campus</h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label"></span>
+            <ol class="breadcrumb">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Configuration</a></li>
+                <li class="active">Campus</li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="page-content">
+
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Enregistrement Campus</h3>
+                    </div>
+                    {{ form_start(form, { 'attr': {'class': 'form-vertical', 'id': 'statutForm' }}) }}
+                    <div class="panel-body">
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                              <div class="form-group">
+                                  <div class="row">
+                                      <label class="col-sm-3 text-right control-label">Hébergement</label>
+                                        <div class="col-sm-8">
+                                          {{ form_widget(form.heberge) }}
+                                          {{ form_errors(form.heberge) }}
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                              <div class="form-group">
+                                  <div class="row">
+                                      <label class="col-sm-3 text-right control-label">Campus</label>
+                                        <div class="col-sm-8">
+                                          {{ form_widget(form.libcampus) }}
+                                          {{ form_errors(form.libcampus) }}
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-10 col-xs-offset-1">
+                              <div class="form-group">
+                                  <div class="row">
+                                      <label class="col-sm-3 text-right control-label">Abréviation</label>
+                                        <div class="col-sm-8">
+                                          {{ form_widget(form.abrevcampus) }}
+                                          {{ form_errors(form.abrevcampus) }}
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 text-right control-label">Seuil</label>
+                                          <div class="col-sm-8">
+                                            {{ form_widget(form.seuilcampus) }}
+                                            {{ form_errors(form.seuilcampus) }}
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-7 col-sm-offset-3 text-right">
+                                <button class="btn btn-default" type="reset">Annuler</button>
+                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form)}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('ressources/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('ressources/plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
+    <script src="{{ asset('ressources/js/sygesca-form-validation.js')}}"></script>
+{% endblock %}
